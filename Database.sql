@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [Ecommerce_2]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Database [Ecommerce_2]    Script Date: 27/8/2022 4:08:53 PM ******/
 CREATE DATABASE [Ecommerce_2]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -82,10 +82,24 @@ ALTER DATABASE [Ecommerce_2] SET QUERY_STORE = OFF
 GO
 USE [Ecommerce_2]
 GO
-/****** Object:  User [admin]    Script Date: 24/8/2022 11:19:14 PM ******/
-CREATE USER [admin] FOR LOGIN [admin] WITH DEFAULT_SCHEMA=[dbo]
+/****** Object:  User [admin]    Script Date: 27/8/2022 4:08:53 PM ******/
+CREATE USER [admin] FOR LOGIN [admin] WITH DEFAULT_SCHEMA=[db_accessadmin]
 GO
-/****** Object:  Table [dbo].[Admin]    Script Date: 24/8/2022 11:19:14 PM ******/
+ALTER ROLE [db_owner] ADD MEMBER [admin]
+GO
+ALTER ROLE [db_accessadmin] ADD MEMBER [admin]
+GO
+ALTER ROLE [db_securityadmin] ADD MEMBER [admin]
+GO
+ALTER ROLE [db_ddladmin] ADD MEMBER [admin]
+GO
+ALTER ROLE [db_backupoperator] ADD MEMBER [admin]
+GO
+ALTER ROLE [db_datareader] ADD MEMBER [admin]
+GO
+ALTER ROLE [db_datawriter] ADD MEMBER [admin]
+GO
+/****** Object:  Table [dbo].[Admin]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -99,7 +113,7 @@ CREATE TABLE [dbo].[Admin](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BillingInfo]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Table [dbo].[BillingInfo]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -119,7 +133,7 @@ CREATE TABLE [dbo].[BillingInfo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BranchAddresses]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Table [dbo].[BranchAddresses]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -134,7 +148,7 @@ CREATE TABLE [dbo].[BranchAddresses](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Contracts]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Table [dbo].[Contracts]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -152,7 +166,7 @@ CREATE TABLE [dbo].[Contracts](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Customers]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Table [dbo].[Customers]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -166,7 +180,7 @@ CREATE TABLE [dbo].[Customers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[OrderDetails]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Table [dbo].[OrderDetails]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -187,7 +201,7 @@ CREATE TABLE [dbo].[OrderDetails](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Orders]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Table [dbo].[Orders]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -206,7 +220,7 @@ CREATE TABLE [dbo].[Orders](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Partners]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Table [dbo].[Partners]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -227,7 +241,7 @@ CREATE TABLE [dbo].[Partners](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[personalInfo]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Table [dbo].[personalInfo]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -246,7 +260,7 @@ CREATE TABLE [dbo].[personalInfo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Products]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Table [dbo].[Products]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -265,7 +279,7 @@ CREATE TABLE [dbo].[Products](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Shippers]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Table [dbo].[Shippers]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -283,7 +297,7 @@ CREATE TABLE [dbo].[Shippers](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Staff]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  Table [dbo].[Staff]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -312,7 +326,7 @@ SET IDENTITY_INSERT [dbo].[Admin] OFF
 GO
 SET IDENTITY_INSERT [dbo].[BillingInfo] ON 
 GO
-INSERT [dbo].[BillingInfo] ([billingId], [paymentMethod], [billDate], [billAddress], [customerId], [orderId]) VALUES (1, N'MoMo', CAST(N'2022-08-20' AS Date), N'address', 1, 2)
+INSERT [dbo].[BillingInfo] ([billingId], [paymentMethod], [billDate], [billAddress], [customerId], [orderId]) VALUES (1, N'MoMo', CAST(N'2022-08-20' AS Date), N'BBBBBBBBB', 1, 2)
 GO
 SET IDENTITY_INSERT [dbo].[BillingInfo] OFF
 GO
@@ -346,11 +360,11 @@ INSERT [dbo].[OrderDetails] ([productId], [orderId], [quantity], [saleUnitPrice]
 GO
 INSERT [dbo].[OrderDetails] ([productId], [orderId], [quantity], [saleUnitPrice], [customerId], [partnerId]) VALUES (2, 4, 2, 35000, 1, 1)
 GO
-INSERT [dbo].[Orders] ([orderId], [orderDate], [orderStatus], [totalPrice], [shipperId], [customerId]) VALUES (2, CAST(N'2022-08-22T00:00:00.000' AS DateTime), N'DANG GIAO HANG', 20000, 1, 1)
+INSERT [dbo].[Orders] ([orderId], [orderDate], [orderStatus], [totalPrice], [shipperId], [customerId]) VALUES (2, CAST(N'2022-08-22T00:00:00.000' AS DateTime), N'CHO DUYET', 25000, 1, 1)
 GO
-INSERT [dbo].[Orders] ([orderId], [orderDate], [orderStatus], [totalPrice], [shipperId], [customerId]) VALUES (3, CAST(N'2022-08-30T00:00:00.000' AS DateTime), N'DANG GIAO HANG', 40000, 1, 1)
+INSERT [dbo].[Orders] ([orderId], [orderDate], [orderStatus], [totalPrice], [shipperId], [customerId]) VALUES (3, CAST(N'2022-08-30T00:00:00.000' AS DateTime), N'DANG GIAO HANG', 30000, 1, 1)
 GO
-INSERT [dbo].[Orders] ([orderId], [orderDate], [orderStatus], [totalPrice], [shipperId], [customerId]) VALUES (4, CAST(N'2022-08-17T00:00:00.000' AS DateTime), N'HOAN THANH', 23000, 1, 1)
+INSERT [dbo].[Orders] ([orderId], [orderDate], [orderStatus], [totalPrice], [shipperId], [customerId]) VALUES (4, CAST(N'2022-08-17T00:00:00.000' AS DateTime), N'HOAN THANH', 30000, 1, 1)
 GO
 SET IDENTITY_INSERT [dbo].[Partners] ON 
 GO
@@ -487,7 +501,7 @@ REFERENCES [dbo].[personalInfo] ([uid])
 GO
 ALTER TABLE [dbo].[Staff] CHECK CONSTRAINT [FK_Staff_personalInfo]
 GO
-/****** Object:  StoredProcedure [dbo].[DIRTY_READ_TRANS1]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[DIRTY_READ_TRANS1]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -505,28 +519,32 @@ BEGIN
 	waitfor delay '00:00:05' 
 	IF LEN(@ADDRESS) >= 50
 	BEGIN
+		PRINT N'Chuỗi dài hơn 50'
 		ROLLBACK TRAN
+		select * from BillingInfo bill where orderId = @ORDERID
 		RETURN
 	END
 	COMMIT TRANSACTION
 END
 GO
-/****** Object:  StoredProcedure [dbo].[DIRTY_READ_TRANS2]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[DIRTY_READ_TRANS2]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 --update BillingInfo set billAddress = 'address' where orderId = 2
 CREATE PROC [dbo].[DIRTY_READ_TRANS2]
+	@ORDERID INT
 AS
 BEGIN
-	SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+	SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+	--fix: SET TRANSACTION ISOLATION LEVEL READ COMMITTED
 	BEGIN TRAN
-		select * from BillingInfo bill where orderId = 2
+		select * from BillingInfo bill where orderId = @ORDERID
 	COMMIT TRAN 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[UNREPEATABLE_READ1]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[UNREPEATABLE_READ1]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -559,7 +577,7 @@ BEGIN
 	COMMIT TRAN
 END
 GO
-/****** Object:  StoredProcedure [dbo].[UNREPEATABLE_READ2]    Script Date: 24/8/2022 11:19:14 PM ******/
+/****** Object:  StoredProcedure [dbo].[UNREPEATABLE_READ2]    Script Date: 27/8/2022 4:08:53 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
