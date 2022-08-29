@@ -1,32 +1,33 @@
-import { Sequelize } from 'sequelize';
-const userName = 'admin';
-const password = 'a'; // update me
-const hostName = 'admin';
-const dbName = 'Ecommerce_2';
+import { BillingInfo } from '../models/BillingInfo';
+import { db } from './db';
 
-// Initialize Sequelize to connect to sample DB
-const db = new Sequelize(dbName, userName, password, {
-  dialect: 'mssql',
-  host: hostName,
-  port: 1433, // Default port
-  logging: false, // disable logging; default: console.log
+export async function dirty_read_data1() {
+  db.sync().then(function () {
+    console.log('\nCreated database schema from model.');
+  });
+  const bill = await BillingInfo.initModel(db);
 
-  dialectOptions: {
-    requestTimeout: 30000, // timeout = 30 seconds
-  },
-});
-
-db.sync().then(function () {
-  console.log('\nCreated database schema from model.');
-});
-(async function a() {
-  db.query(
-    'EXEC DIRTY_READ_TRANS1 2,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-    {
-      raw: true,
-    }
-  ).then((v) => console.log(v));
-  db.query('EXEC DIRTY_READ_TRANS2 2', {
+  const data: BillingInfo[] = await bill.findAll({ raw: true });
+  console.log(data);
+  return data;
+}
+export async function dirty_read_trans1(
+  orderId = 2,
+  address = 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'
+) {
+  const data = await db.query(`EXEC DIRTY_READ_TRANS1 ${orderId},${address}`, {
     raw: true,
-  }).then((v) => console.log(v));
-})();
+  });
+  console.log(data);
+  return data;
+  // db.query('EXEC DIRTY_READ_TRANS2 2', {
+  //   raw: true,
+  // }).then((v) => console.log(v));
+}
+export async function dirty_read_trans2(orderId = 2) {
+  const data = await db.query(`EXEC DIRTY_READ_TRANS2 ${orderId}`, {
+    raw: true,
+  });
+  console.log(data);
+  return data;
+}

@@ -17,13 +17,14 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2020",
-    "module": "commonjs",
+    "module": "es2020",
     "lib": ["es2020", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "types": ["node"]
   }
 }
