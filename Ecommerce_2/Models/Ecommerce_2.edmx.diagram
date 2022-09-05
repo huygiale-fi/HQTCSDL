@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d9bf339189114154a7142d02a12b5124" Name="Diagram1">
+        <EntityTypeShape EntityType="Ecommerce_2Model.Admin" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ecommerce_2Model.BillingInfo" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ecommerce_2Model.BranchAddress" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ecommerce_2Model.Contract" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ecommerce_2Model.Customer" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ecommerce_2Model.OrderDetail" Width="1.5" PointX="15" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ecommerce_2Model.Order" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ecommerce_2Model.Partner" Width="1.5" PointX="10.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ecommerce_2Model.personalInfo" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ecommerce_2Model.Product" Width="1.5" PointX="12.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ecommerce_2Model.Shipper" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Ecommerce_2Model.Staff" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Admin_personalInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_personalInfo_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Staff_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_BillingInfo_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_BranchAddresses_Contracts" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Contracts_Partners" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Contracts_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Customers_personalInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Orders_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_OrderDetails_Orders" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_OrderDetails_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Orders_Shippers" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Partners_personalInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Partners_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Products_Partners" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Shippers_personalInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="Ecommerce_2Model.FK_Staff_personalInfo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

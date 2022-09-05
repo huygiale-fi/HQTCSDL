@@ -1,0 +1,38 @@
+﻿<Window x:Class="Ecommerce_2.DirtyRead.DirtyRead1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Ecommerce_2.DirtyRead"
+        mc:Ignorable="d" Loaded="Window_Loaded"
+        Title="DirtyRead1" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            
+        </Grid>
+        
+        
+        <Grid Grid.Row="1">
+            <DataGrid Name="OrdersTable" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding orderId}"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding orderDate}"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding orderStatus}"/>
+                    <DataGridTextColumn Header="Total Price" Binding="{Binding totalPrice}"/>
+                    <DataGridTextColumn Header="Shipper" Binding="{Binding shipperId}"/>
+                    <DataGridTextColumn Header="Customer" Binding="{Binding customerId}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        
+        
+        <Grid Grid.Row="2">
+
+        </Grid>
+    </Grid>
+</Window>

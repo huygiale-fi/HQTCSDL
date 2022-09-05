@@ -1,0 +1,1132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Ecommerce_2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="adminId" />
+          </Key>
+          <Property Name="adminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="personalId" Type="int" />
+        </EntityType>
+        <EntityType Name="BillingInfo">
+          <Key>
+            <PropertyRef Name="billingId" />
+            <PropertyRef Name="customerId" />
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="billingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paymentMethod" Type="nvarchar" MaxLength="50" />
+          <Property Name="billDate" Type="date" />
+          <Property Name="billAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="customerId" Type="int" Nullable="false" />
+          <Property Name="orderId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BranchAddresses">
+          <Key>
+            <PropertyRef Name="branchAddressesId" />
+            <PropertyRef Name="contractId" />
+          </Key>
+          <Property Name="branchAddressesId" Type="int" Nullable="false" />
+          <Property Name="contractId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="contractId" />
+          </Key>
+          <Property Name="contractId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="partnerId" Type="int" Nullable="false" />
+          <Property Name="taxId" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="representPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="registerBranches" Type="nvarchar" MaxLength="50" />
+          <Property Name="sraffId" Type="int" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="personalId" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="productId" />
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="customerId" />
+            <PropertyRef Name="partnerId" />
+          </Key>
+          <Property Name="productId" Type="int" Nullable="false" />
+          <Property Name="orderId" Type="int" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="saleUnitPrice" Type="float" />
+          <Property Name="customerId" Type="int" Nullable="false" />
+          <Property Name="partnerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="orderId" Type="int" Nullable="false" />
+          <Property Name="orderDate" Type="datetime" />
+          <Property Name="orderStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="totalPrice" Type="float" />
+          <Property Name="shipperId" Type="int" />
+          <Property Name="customerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Partners">
+          <Key>
+            <PropertyRef Name="partnerId" />
+          </Key>
+          <Property Name="partnerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ordersPerDay" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="productTransportType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="district" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="representPerson" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="branchesCount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="staffId" Type="int" />
+          <Property Name="personalId" Type="int" />
+        </EntityType>
+        <EntityType Name="personalInfo">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="phone" Type="nchar" MaxLength="10" />
+          <Property Name="email" Type="nchar" MaxLength="50" />
+          <Property Name="address" Type="nvarchar" MaxLength="50" />
+          <Property Name="adminId" Type="int" />
+          <Property Name="password" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="productId" />
+            <PropertyRef Name="partnerId" />
+          </Key>
+          <Property Name="productId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="unitPrice" Type="float" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="50" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="partnerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shippers">
+          <Key>
+            <PropertyRef Name="shipperId" />
+          </Key>
+          <Property Name="shipperId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bankInfo" Type="nvarchar" MaxLength="50" />
+          <Property Name="idCardNumber" Type="int" />
+          <Property Name="licensePlate" Type="nchar" MaxLength="20" />
+          <Property Name="activeArea" Type="nvarchar" MaxLength="50" />
+          <Property Name="personalId" Type="int" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adminId" Type="int" />
+          <Property Name="personalId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Admin_personalInfo">
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personalInfo">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="personalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillingInfo_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="BillingInfo" Type="Self.BillingInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="orderId" />
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="BillingInfo">
+              <PropertyRef Name="orderId" />
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchAddresses_Contracts">
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="1" />
+          <End Role="BranchAddresses" Type="Self.BranchAddresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="contractId" />
+            </Principal>
+            <Dependent Role="BranchAddresses">
+              <PropertyRef Name="contractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contracts_Partners">
+          <End Role="Partners" Type="Self.Partners" Multiplicity="1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partners">
+              <PropertyRef Name="partnerId" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="partnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contracts_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="staffId" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="sraffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customers_personalInfo">
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personalInfo">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="personalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="orderId" />
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="orderId" />
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="productId" />
+              <PropertyRef Name="partnerId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="productId" />
+              <PropertyRef Name="partnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Shippers">
+          <End Role="Shippers" Type="Self.Shippers" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shippers">
+              <PropertyRef Name="shipperId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="shipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partners_personalInfo">
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="0..1" />
+          <End Role="Partners" Type="Self.Partners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personalInfo">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="Partners">
+              <PropertyRef Name="personalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partners_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Partners" Type="Self.Partners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="staffId" />
+            </Principal>
+            <Dependent Role="Partners">
+              <PropertyRef Name="staffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personalInfo_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="adminId" />
+            </Principal>
+            <Dependent Role="personalInfo">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Partners">
+          <End Role="Partners" Type="Self.Partners" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partners">
+              <PropertyRef Name="partnerId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="partnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shippers_personalInfo">
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="1" />
+          <End Role="Shippers" Type="Self.Shippers" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="personalInfo">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="Shippers">
+              <PropertyRef Name="shipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="adminId" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_personalInfo">
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personalInfo">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="personalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DIRTY_READ_TRANS1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ORDERID" Type="int" Mode="In" />
+          <Parameter Name="ADDRESS" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="DIRTY_READ_TRANS2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ORDERID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UNREPEATABLE_READ1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UNREPEATABLE_READ2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Ecommerce_2ModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillingInfo" EntityType="Self.BillingInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchAddresses" EntityType="Self.BranchAddresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partners" EntityType="Self.Partners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personalInfo" EntityType="Self.personalInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shippers" EntityType="Self.Shippers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Admin_personalInfo" Association="Self.FK_Admin_personalInfo">
+            <End Role="personalInfo" EntitySet="personalInfo" />
+            <End Role="Admin" EntitySet="Admin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillingInfo_Orders" Association="Self.FK_BillingInfo_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="BillingInfo" EntitySet="BillingInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchAddresses_Contracts" Association="Self.FK_BranchAddresses_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="BranchAddresses" EntitySet="BranchAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contracts_Partners" Association="Self.FK_Contracts_Partners">
+            <End Role="Partners" EntitySet="Partners" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contracts_Staff" Association="Self.FK_Contracts_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customers_personalInfo" Association="Self.FK_Customers_personalInfo">
+            <End Role="personalInfo" EntitySet="personalInfo" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Shippers" Association="Self.FK_Orders_Shippers">
+            <End Role="Shippers" EntitySet="Shippers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partners_personalInfo" Association="Self.FK_Partners_personalInfo">
+            <End Role="personalInfo" EntitySet="personalInfo" />
+            <End Role="Partners" EntitySet="Partners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partners_Staff" Association="Self.FK_Partners_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Partners" EntitySet="Partners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personalInfo_Admin" Association="Self.FK_personalInfo_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="personalInfo" EntitySet="personalInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Partners" Association="Self.FK_Products_Partners">
+            <End Role="Partners" EntitySet="Partners" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shippers_personalInfo" Association="Self.FK_Shippers_personalInfo">
+            <End Role="personalInfo" EntitySet="personalInfo" />
+            <End Role="Shippers" EntitySet="Shippers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Admin" Association="Self.FK_Staff_Admin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_personalInfo" Association="Self.FK_Staff_personalInfo">
+            <End Role="personalInfo" EntitySet="personalInfo" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Ecommerce_2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="adminId" />
+          </Key>
+          <Property Name="adminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personalId" Type="Int32" />
+          <NavigationProperty Name="personalInfo" Relationship="Self.FK_Admin_personalInfo" FromRole="Admin" ToRole="personalInfo" />
+          <NavigationProperty Name="personalInfoes" Relationship="Self.FK_personalInfo_Admin" FromRole="Admin" ToRole="personalInfo" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Admin" FromRole="Admin" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="BillingInfo">
+          <Key>
+            <PropertyRef Name="billingId" />
+            <PropertyRef Name="customerId" />
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="billingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="billDate" Type="DateTime" Precision="0" />
+          <Property Name="billAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
+          <Property Name="orderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_BillingInfo_Orders" FromRole="BillingInfo" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="BranchAddress">
+          <Key>
+            <PropertyRef Name="branchAddressesId" />
+            <PropertyRef Name="contractId" />
+          </Key>
+          <Property Name="branchAddressesId" Type="Int32" Nullable="false" />
+          <Property Name="contractId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_BranchAddresses_Contracts" FromRole="BranchAddresses" ToRole="Contracts" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="contractId" />
+          </Key>
+          <Property Name="contractId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="partnerId" Type="Int32" Nullable="false" />
+          <Property Name="taxId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="representPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="registerBranches" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sraffId" Type="Int32" />
+          <NavigationProperty Name="BranchAddresses" Relationship="Self.FK_BranchAddresses_Contracts" FromRole="Contracts" ToRole="BranchAddresses" />
+          <NavigationProperty Name="Partner" Relationship="Self.FK_Contracts_Partners" FromRole="Contracts" ToRole="Partners" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Contracts_Staff" FromRole="Contracts" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="personalId" Type="Int32" />
+          <NavigationProperty Name="personalInfo" Relationship="Self.FK_Customers_personalInfo" FromRole="Customers" ToRole="personalInfo" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customers" FromRole="Customers" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="productId" />
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="customerId" />
+            <PropertyRef Name="partnerId" />
+          </Key>
+          <Property Name="productId" Type="Int32" Nullable="false" />
+          <Property Name="orderId" Type="Int32" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="saleUnitPrice" Type="Double" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
+          <Property Name="partnerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetails_Orders" FromRole="OrderDetails" ToRole="Orders" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderDetails_Products" FromRole="OrderDetails" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderId" />
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="orderId" Type="Int32" Nullable="false" />
+          <Property Name="orderDate" Type="DateTime" Precision="3" />
+          <Property Name="orderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="totalPrice" Type="Double" />
+          <Property Name="shipperId" Type="Int32" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BillingInfoes" Relationship="Self.FK_BillingInfo_Orders" FromRole="Orders" ToRole="BillingInfo" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customers" FromRole="Orders" ToRole="Customers" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Orders" FromRole="Orders" ToRole="OrderDetails" />
+          <NavigationProperty Name="Shipper" Relationship="Self.FK_Orders_Shippers" FromRole="Orders" ToRole="Shippers" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="partnerId" />
+          </Key>
+          <Property Name="partnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ordersPerDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="productTransportType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="district" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="representPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="branchesCount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="staffId" Type="Int32" />
+          <Property Name="personalId" Type="Int32" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK_Contracts_Partners" FromRole="Partners" ToRole="Contracts" />
+          <NavigationProperty Name="personalInfo" Relationship="Self.FK_Partners_personalInfo" FromRole="Partners" ToRole="personalInfo" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_Partners_Staff" FromRole="Partners" ToRole="Staff" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Partners" FromRole="Partners" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="personalInfo">
+          <Key>
+            <PropertyRef Name="uid" />
+          </Key>
+          <Property Name="uid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="adminId" Type="Int32" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Admins" Relationship="Self.FK_Admin_personalInfo" FromRole="personalInfo" ToRole="Admin" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_personalInfo_Admin" FromRole="personalInfo" ToRole="Admin" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customers_personalInfo" FromRole="personalInfo" ToRole="Customers" />
+          <NavigationProperty Name="Partners" Relationship="Self.FK_Partners_personalInfo" FromRole="personalInfo" ToRole="Partners" />
+          <NavigationProperty Name="Shipper" Relationship="Self.FK_Shippers_personalInfo" FromRole="personalInfo" ToRole="Shippers" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_personalInfo" FromRole="personalInfo" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productId" />
+            <PropertyRef Name="partnerId" />
+          </Key>
+          <Property Name="productId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="unitPrice" Type="Double" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="partnerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Products" FromRole="Products" ToRole="OrderDetails" />
+          <NavigationProperty Name="Partner" Relationship="Self.FK_Products_Partners" FromRole="Products" ToRole="Partners" />
+        </EntityType>
+        <EntityType Name="Shipper">
+          <Key>
+            <PropertyRef Name="shipperId" />
+          </Key>
+          <Property Name="shipperId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bankInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idCardNumber" Type="Int32" />
+          <Property Name="licensePlate" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="activeArea" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="personalId" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Shippers" FromRole="Shippers" ToRole="Orders" />
+          <NavigationProperty Name="personalInfo" Relationship="Self.FK_Shippers_personalInfo" FromRole="Shippers" ToRole="personalInfo" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="staffId" />
+          </Key>
+          <Property Name="staffId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adminId" Type="Int32" />
+          <Property Name="personalId" Type="Int32" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_Staff_Admin" FromRole="Staff" ToRole="Admin" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK_Contracts_Staff" FromRole="Staff" ToRole="Contracts" />
+          <NavigationProperty Name="Partners" Relationship="Self.FK_Partners_Staff" FromRole="Staff" ToRole="Partners" />
+          <NavigationProperty Name="personalInfo" Relationship="Self.FK_Staff_personalInfo" FromRole="Staff" ToRole="personalInfo" />
+        </EntityType>
+        <Association Name="FK_Admin_personalInfo">
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="0..1" />
+          <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personalInfo">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="Admin">
+              <PropertyRef Name="personalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personalInfo_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="adminId" />
+            </Principal>
+            <Dependent Role="personalInfo">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Admin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="adminId" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BillingInfo_Orders">
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+          <End Role="BillingInfo" Type="Self.BillingInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="orderId" />
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="BillingInfo">
+              <PropertyRef Name="orderId" />
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchAddresses_Contracts">
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="1" />
+          <End Role="BranchAddresses" Type="Self.BranchAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contracts">
+              <PropertyRef Name="contractId" />
+            </Principal>
+            <Dependent Role="BranchAddresses">
+              <PropertyRef Name="contractId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contracts_Partners">
+          <End Role="Partners" Type="Self.Partner" Multiplicity="1" />
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partners">
+              <PropertyRef Name="partnerId" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="partnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contracts_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="staffId" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="sraffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customers_personalInfo">
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personalInfo">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="personalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Customers">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Orders">
+          <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="orderId" />
+              <PropertyRef Name="customerId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="orderId" />
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetails_Products">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="productId" />
+              <PropertyRef Name="partnerId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="productId" />
+              <PropertyRef Name="partnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Shippers">
+          <End Role="Shippers" Type="Self.Shipper" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shippers">
+              <PropertyRef Name="shipperId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="shipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partners_personalInfo">
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="0..1" />
+          <End Role="Partners" Type="Self.Partner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personalInfo">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="Partners">
+              <PropertyRef Name="personalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Partners_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="Partners" Type="Self.Partner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="staffId" />
+            </Principal>
+            <Dependent Role="Partners">
+              <PropertyRef Name="staffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_Partners">
+          <End Role="Partners" Type="Self.Partner" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partners">
+              <PropertyRef Name="partnerId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="partnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shippers_personalInfo">
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="1" />
+          <End Role="Shippers" Type="Self.Shipper" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="personalInfo">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="Shippers">
+              <PropertyRef Name="shipperId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_personalInfo">
+          <End Role="personalInfo" Type="Self.personalInfo" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personalInfo">
+              <PropertyRef Name="uid" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="personalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Ecommerce_2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="BillingInfoes" EntityType="Self.BillingInfo" />
+          <EntitySet Name="BranchAddresses" EntityType="Self.BranchAddress" />
+          <EntitySet Name="Contracts" EntityType="Self.Contract" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Partners" EntityType="Self.Partner" />
+          <EntitySet Name="personalInfoes" EntityType="Self.personalInfo" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Shippers" EntityType="Self.Shipper" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <AssociationSet Name="FK_Admin_personalInfo" Association="Self.FK_Admin_personalInfo">
+            <End Role="personalInfo" EntitySet="personalInfoes" />
+            <End Role="Admin" EntitySet="Admins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personalInfo_Admin" Association="Self.FK_personalInfo_Admin">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="personalInfo" EntitySet="personalInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Admin" Association="Self.FK_Staff_Admin">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BillingInfo_Orders" Association="Self.FK_BillingInfo_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="BillingInfo" EntitySet="BillingInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchAddresses_Contracts" Association="Self.FK_BranchAddresses_Contracts">
+            <End Role="Contracts" EntitySet="Contracts" />
+            <End Role="BranchAddresses" EntitySet="BranchAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contracts_Partners" Association="Self.FK_Contracts_Partners">
+            <End Role="Partners" EntitySet="Partners" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contracts_Staff" Association="Self.FK_Contracts_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customers_personalInfo" Association="Self.FK_Customers_personalInfo">
+            <End Role="personalInfo" EntitySet="personalInfoes" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Orders" Association="Self.FK_OrderDetails_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Products" Association="Self.FK_OrderDetails_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Shippers" Association="Self.FK_Orders_Shippers">
+            <End Role="Shippers" EntitySet="Shippers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partners_personalInfo" Association="Self.FK_Partners_personalInfo">
+            <End Role="personalInfo" EntitySet="personalInfoes" />
+            <End Role="Partners" EntitySet="Partners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Partners_Staff" Association="Self.FK_Partners_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Partners" EntitySet="Partners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_Partners" Association="Self.FK_Products_Partners">
+            <End Role="Partners" EntitySet="Partners" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shippers_personalInfo" Association="Self.FK_Shippers_personalInfo">
+            <End Role="personalInfo" EntitySet="personalInfoes" />
+            <End Role="Shippers" EntitySet="Shippers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_personalInfo" Association="Self.FK_Staff_personalInfo">
+            <End Role="personalInfo" EntitySet="personalInfoes" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <FunctionImport Name="DIRTY_READ_TRANS1" ReturnType="Collection(Ecommerce_2Model.DIRTY_READ_TRANS1_Result)">
+            <Parameter Name="ORDERID" Mode="In" Type="Int32" />
+            <Parameter Name="ADDRESS" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DIRTY_READ_TRANS2" ReturnType="Collection(Ecommerce_2Model.DIRTY_READ_TRANS2_Result)">
+            <Parameter Name="ORDERID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UNREPEATABLE_READ1" ReturnType="Collection(Ecommerce_2Model.UNREPEATABLE_READ1_Result)" />
+          <FunctionImport Name="UNREPEATABLE_READ2" />
+        </EntityContainer>
+        <ComplexType Name="DIRTY_READ_TRANS1_Result">
+          <Property Type="Int32" Name="billingId" Nullable="false" />
+          <Property Type="String" Name="paymentMethod" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="billDate" Nullable="true" />
+          <Property Type="String" Name="billAddress" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="customerId" Nullable="false" />
+          <Property Type="Int32" Name="orderId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="DIRTY_READ_TRANS2_Result">
+          <Property Type="Int32" Name="billingId" Nullable="false" />
+          <Property Type="String" Name="paymentMethod" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="billDate" Nullable="true" />
+          <Property Type="String" Name="billAddress" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="customerId" Nullable="false" />
+          <Property Type="Int32" Name="orderId" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="UNREPEATABLE_READ1_Result">
+          <Property Type="Int32" Name="uid" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="address" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="adminId" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="100" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Ecommerce_2ModelStoreContainer" CdmEntityContainer="Ecommerce_2Entities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
+                <ScalarProperty Name="personalId" ColumnName="personalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillingInfoes">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.BillingInfo">
+              <MappingFragment StoreEntitySet="BillingInfo">
+                <ScalarProperty Name="billingId" ColumnName="billingId" />
+                <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
+                <ScalarProperty Name="billDate" ColumnName="billDate" />
+                <ScalarProperty Name="billAddress" ColumnName="billAddress" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchAddresses">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.BranchAddress">
+              <MappingFragment StoreEntitySet="BranchAddresses">
+                <ScalarProperty Name="branchAddressesId" ColumnName="branchAddressesId" />
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.Contract">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
+                <ScalarProperty Name="partnerId" ColumnName="partnerId" />
+                <ScalarProperty Name="taxId" ColumnName="taxId" />
+                <ScalarProperty Name="representPerson" ColumnName="representPerson" />
+                <ScalarProperty Name="registerBranches" ColumnName="registerBranches" />
+                <ScalarProperty Name="sraffId" ColumnName="sraffId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="personalId" ColumnName="personalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="saleUnitPrice" ColumnName="saleUnitPrice" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="partnerId" ColumnName="partnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+                <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="shipperId" ColumnName="shipperId" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partners">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.Partner">
+              <MappingFragment StoreEntitySet="Partners">
+                <ScalarProperty Name="partnerId" ColumnName="partnerId" />
+                <ScalarProperty Name="ordersPerDay" ColumnName="ordersPerDay" />
+                <ScalarProperty Name="productTransportType" ColumnName="productTransportType" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="representPerson" ColumnName="representPerson" />
+                <ScalarProperty Name="branchesCount" ColumnName="branchesCount" />
+                <ScalarProperty Name="staffId" ColumnName="staffId" />
+                <ScalarProperty Name="personalId" ColumnName="personalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personalInfoes">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.personalInfo">
+              <MappingFragment StoreEntitySet="personalInfo">
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="unitPrice" ColumnName="unitPrice" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="partnerId" ColumnName="partnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shippers">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.Shipper">
+              <MappingFragment StoreEntitySet="Shippers">
+                <ScalarProperty Name="shipperId" ColumnName="shipperId" />
+                <ScalarProperty Name="bankInfo" ColumnName="bankInfo" />
+                <ScalarProperty Name="idCardNumber" ColumnName="idCardNumber" />
+                <ScalarProperty Name="licensePlate" ColumnName="licensePlate" />
+                <ScalarProperty Name="activeArea" ColumnName="activeArea" />
+                <ScalarProperty Name="personalId" ColumnName="personalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="Ecommerce_2Model.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="staffId" ColumnName="staffId" />
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
+                <ScalarProperty Name="personalId" ColumnName="personalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DIRTY_READ_TRANS1" FunctionName="Ecommerce_2Model.Store.DIRTY_READ_TRANS1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Ecommerce_2Model.DIRTY_READ_TRANS1_Result">
+                <ScalarProperty Name="billingId" ColumnName="billingId" />
+                <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
+                <ScalarProperty Name="billDate" ColumnName="billDate" />
+                <ScalarProperty Name="billAddress" ColumnName="billAddress" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DIRTY_READ_TRANS2" FunctionName="Ecommerce_2Model.Store.DIRTY_READ_TRANS2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Ecommerce_2Model.DIRTY_READ_TRANS2_Result">
+                <ScalarProperty Name="billingId" ColumnName="billingId" />
+                <ScalarProperty Name="paymentMethod" ColumnName="paymentMethod" />
+                <ScalarProperty Name="billDate" ColumnName="billDate" />
+                <ScalarProperty Name="billAddress" ColumnName="billAddress" />
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UNREPEATABLE_READ1" FunctionName="Ecommerce_2Model.Store.UNREPEATABLE_READ1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Ecommerce_2Model.UNREPEATABLE_READ1_Result">
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UNREPEATABLE_READ2" FunctionName="Ecommerce_2Model.Store.UNREPEATABLE_READ2" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
